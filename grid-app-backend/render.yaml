@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: backend-api  # Name of your backend service on Render
+    env: node          # Environment for your service (Node.js)
+    buildCommand: "npm install"  # Command to install dependencies
+    startCommand: "node server.js"  # Command to start the server (using server.js as the entry point)
+    plan: free  # Use Render's free plan for testing (change if needed)
+    envVars:
+      - key: NODE_ENV
+        value: production  # Set the environment to production
+    routes:
+      - type: http
+        path: "/"  # Main route for your API service (usually root for API)
