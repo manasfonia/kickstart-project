@@ -23,7 +23,7 @@ const MainScreen = ({}) =>{
         <Layout>
             <div className="main-screen-wrapper">
             <div className="table-header">
-                Pledged Data
+                PLEDGED DATA
             </div>
                 <Table data={getGridData} loader={loader}/>
         </div>

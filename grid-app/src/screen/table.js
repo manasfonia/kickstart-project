@@ -13,13 +13,21 @@ const Table = ({ data = [], loader }) => {
 
     useEffect(() => {
         let result = data;
-
-        if (searchTerm) {
-            result = result.filter(item =>
-                Object.values(item).some(value =>
-                    value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-                )
-            );
+        const trimmedSearch = searchTerm?.trim();
+        if (trimmedSearch) {
+            if (trimmedSearch) {
+                result = result.filter(item => {
+                    const itemValues = Object.values(item).map(value =>
+                        value.toString().trim()
+                    );
+                    if (!isNaN(trimmedSearch)) {
+                        return itemValues.some(value => value === trimmedSearch);
+                    }
+                    return itemValues.some(value =>
+                        value.toLowerCase().includes(trimmedSearch.toLowerCase())
+                    );
+                });
+            }
         }
         setFilteredData(result);
         setCurrentPage(1);
@@ -27,6 +35,9 @@ const Table = ({ data = [], loader }) => {
         firstIndex = lastIndex - recordsPerPage;
         if (result && result?.length > 0) {
             setCurrentRecords(result.slice(firstIndex, lastIndex));
+        }
+        else {
+            setCurrentRecords([]);
         }
     }, [searchTerm, data]);
 
@@ -53,7 +64,7 @@ const Table = ({ data = [], loader }) => {
             <div className="search-sort-container">
                 <input
                     type="text"
-                    placeholder="Search"
+                    placeholder="Search..."
                     className={loader ? "search-input-disable" : "search-input"}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -73,7 +84,7 @@ const Table = ({ data = [], loader }) => {
                     <tbody>
                         {currentRecords?.length > 0 ? currentRecords.map((record) => (
                             <tr key={record?.["s.no"]}>
-                                <td>{record?.["s.no"]+1}</td>
+                                <td>{record?.["s.no"]}</td>
                                 <td>{record?.["percentage.funded"]}%</td>
                                 <td className="amount-pledged">
                                     ${record?.["amt.pledged"].toLocaleString()}
@@ -83,12 +94,12 @@ const Table = ({ data = [], loader }) => {
                             <tr>
                                 <td colSpan="3" style={{ textAlign: 'center', padding: '20px' }}>
                                     {
-                                        loader ?  
-                                        <div className="spinner-container">
-                                            <Loader2 className="spinner-icon" />
-                                            <div>Loading</div>
-                                        </div> 
-                                        : <span>No records found</span>
+                                        loader ?
+                                            <div className="spinner-container">
+                                                <Loader2 className="spinner-icon" />
+                                                <div>Loading</div>
+                                            </div>
+                                            : <span>No records found</span>
                                     }
                                 </td>
                             </tr>}

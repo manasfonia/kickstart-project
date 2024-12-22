@@ -150,17 +150,18 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px 36px;
+    padding: 36px;
     /* background-color: #f6f8fb; */
     background: linear-gradient(to bottom, #f8f9fa, #ffffff);
 }
 
 .table-header{
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 600;
     justify-content: center;
     display: flex;
     padding-bottom: 12px;
+    text-decoration: underline;
 }
 
 .table-container {
