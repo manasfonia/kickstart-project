@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { getGridDataAPI } from "../operations/Actions";
 import { useDispatch, useSelector } from "react-redux"
+import Layout from "./layout";
 import Table from "./table";
 import './style.css'
 
 const MainScreen = ({}) =>{
     const dispatch = useDispatch();
+    const [loader, setLoader] = useState(false)
     const { getGridData= {} } = useSelector((state) => ({
         getGridData: state?.gridReducer,
     }))
 
     useEffect(()=>{
-        dispatch(getGridDataAPI());
+        setLoader(true)
+        dispatch(getGridDataAPI()).then((resp)=>{
+            setLoader(false)
+        });
     },[])
 
     return(
-        <div className="main-screen-wrapper">
-            <div className="header">
+        <Layout>
+            <div className="main-screen-wrapper">
+            <div className="table-header">
                 Pledged Data
             </div>
-                <Table data={getGridData} />
+                <Table data={getGridData} loader={loader}/>
         </div>
+        </Layout>
     )
 }
 

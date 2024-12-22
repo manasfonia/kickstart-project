@@ -1,13 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header Styles */
+  .header {
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-right{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .company-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+    text-decoration: none;
+  }
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #1e40af;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .footer {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 3rem 2rem;
+    margin-top: auto;
+  }
+  
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .footer-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-link:hover {
+    color: white;
+  }
+  
+  .bottom-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+    }
+  
+    .footer-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+
 .main-screen-wrapper{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
-    padding: 16px;
-    background-color: #f8fafc;
+    padding: 20px 36px;
+    /* background-color: #f6f8fb; */
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
 }
 
-.header{
+.table-header{
     font-size: 32px;
     font-weight: 600;
     justify-content: center;
@@ -17,10 +165,8 @@
 
 .table-container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    /* max-width: 1200px; */
     padding: 24px;
-    background-color: #f8fafc;
   }
   
   .table-title {
@@ -38,7 +184,7 @@
   
   .search-input {
     padding: 12px 16px;
-    border: 2px solid #e2e8f0;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     width: 25%;
     font-size: 15px;
@@ -48,8 +194,17 @@
   
   .search-input:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border: 1px solid #3b82f6;
+  }
+
+  .search-input-disable{
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    width: 25%;
+    font-size: 15px;
+    background-color: lightgray;
+    pointer-events: none !important;
   }
   
   .table-wrapper {
@@ -150,12 +305,10 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
   
-  /* Animation for hover effects */
   .data-table tr {
     transition: background-color 0.2s ease;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .table-container {
       padding: 16px;
@@ -164,9 +317,37 @@
     .search-input {
       width: 100%;
     }
+
+    .search-input-disable{
+      width: 100%;
+    }
     
     .data-table th,
     .data-table td {
       padding: 12px 16px;
+    }
+  }
+
+  .spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .spinner-icon {
+    width: 24px;
+    height: 24px;
+    color: #3b82f6;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
