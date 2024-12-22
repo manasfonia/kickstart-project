@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100px;
+    height: 100vh;
     padding: 16px;
+    background-color: #f8fafc;
 }
 
 .header{
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 600;
     justify-content: center;
     display: flex;
     padding-bottom: 12px;
@@ -18,65 +19,90 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
+    background-color: #f8fafc;
   }
   
   .table-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3b82f6;
   }
   
   .search-sort-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 20px;
+    margin-bottom: 24px;
   }
   
   .search-input {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 250px;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    width: 300px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background-color: white;
   }
   
-  .sort-select {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
+  .search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
   
   .table-wrapper {
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
   }
   
   .data-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
   }
   
   .data-table th {
-    background-color: #f8f9fa;
-    padding: 12px 16px;
+    background-color: #1e40af;
+    padding: 16px 20px;
     text-align: left;
     font-weight: 600;
-    color: #374151;
-    border-bottom: 1px solid #e5e7eb;
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .data-table th:first-child {
+    border-top-left-radius: 8px;
+  }
+  
+  .data-table th:last-child {
+    border-top-right-radius: 8px;
   }
   
   .data-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 15px;
+  }
+  
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .data-table tr:hover {
+    background-color: #f8fafc;
   }
   
   .amount-pledged {
-    color: #10b981;
+    color: #0d9488;
+    font-weight: 600;
   }
   
   .pagination-controls {
@@ -84,33 +110,63 @@
     justify-content: flex-end;
     gap: 8px;
     align-items: center;
-    padding: 12px 16px;
-    background-color: white;
-    border-top: 1px solid #e5e7eb;
+    padding: 16px 20px;
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
   }
   
   .page-button {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    background-color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1e40af;
+    color: white;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
   }
   
   .page-button:disabled {
-    opacity: 0.5;
+    background-color: #94a3b8;
     cursor: not-allowed;
   }
   
   .page-button:hover:not(:disabled) {
-    background-color: #f9fafb;
+    background-color: #1e3a8a;
+    transform: translateY(-1px);
   }
   
   .page-info {
     font-size: 14px;
-    color: #374151;
+    color: #475569;
+    font-weight: 500;
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Animation for hover effects */
+  .data-table tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .table-container {
+      padding: 16px;
+    }
+    
+    .search-input {
+      width: 100%;
+    }
+    
+    .data-table th,
+    .data-table td {
+      padding: 12px 16px;
+    }
   }
