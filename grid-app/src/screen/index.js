@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getGridDataAPI } from "../operations/Actions";
 import { useDispatch, useSelector } from "react-redux"
+import Table from "./table";
 import './style.css'
 
 const MainScreen = ({}) =>{
     const dispatch = useDispatch();
-    const [gridData, setGridData] = useState({})
-
     const { getGridData= {} } = useSelector((state) => ({
         getGridData: state?.gridReducer,
     }))
-
-    console.log("manasfonia", getGridData)
 
     useEffect(()=>{
         dispatch(getGridDataAPI());
@@ -22,11 +19,9 @@ const MainScreen = ({}) =>{
             <div className="header">
                 Pledged Data
             </div>
-            <div>
-                {getGridData?.by ?? 'none'}
-            </div>
+                <Table data={getGridData} />
         </div>
     )
 }
 
-export default MainScreen
+export default MainScreen;
