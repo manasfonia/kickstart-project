@@ -11,7 +11,7 @@ app.use(express.json());
 app.get('/getGridData', (req, res) => {
     try {
         const filteredData = projectData.map(project => ({
-            "s.no": project["s.no"],
+            "s.no": project["s.no"]+1,
             "amt.pledged": project["amt.pledged"],
             "percentage.funded": project["percentage.funded"]
         }));
